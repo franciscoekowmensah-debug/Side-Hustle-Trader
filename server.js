@@ -62,6 +62,29 @@ app.post('/api/auth/register', (req, res) => {
             
             // Log user in automatically after register
             req.session.userId = this.lastID;
+            
+            // Process referral if referrerId is provided and is not the registering user themselves
+            const { referrerId } = req.body;
+            if (referrerId && Number(referrerId) !== this.lastID) {
+                db.run(`UPDATE users SET invites_count = invites_count + 1 WHERE id = ?`, [referrerId], function(err) {
+                    if (!err) {
+                        // Retrieve the new invites_count to dynamically update tier
+                        db.get(`SELECT invites_count FROM users WHERE id = ?`, [referrerId], (err, row) => {
+                            if (!err && row) {
+                                const newCount = row.invites_count;
+                                let newTier = 'Level 1';
+                                if (newCount >= 12) newTier = 'Level 5';
+                                else if (newCount >= 8) newTier = 'Level 4';
+                                else if (newCount >= 4) newTier = 'Level 3';
+                                else if (newCount >= 1) newTier = 'Level 2';
+                                
+                                db.run(`UPDATE users SET tier_level = ? WHERE id = ?`, [newTier, referrerId]);
+                            }
+                        });
+                    }
+                });
+            }
+            
             res.json({ success: true, message: 'Registration successful!' });
         });
     });

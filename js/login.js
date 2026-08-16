@@ -23,6 +23,13 @@ let changeForm = (e) => {
     bContainer.classList.toggle("is-z200");
 }
 
+// Parse ref parameter from URL and store it in sessionStorage
+const urlParams = new URLSearchParams(window.location.search);
+const ref = urlParams.get('ref');
+if (ref) {
+    sessionStorage.setItem('referrerId', ref);
+}
+
 let mainF = (e) => {
     for (var i = 0; i < switchBtn.length; i++)
         switchBtn[i].addEventListener("click", changeForm);
@@ -35,11 +42,12 @@ let mainF = (e) => {
             const name = document.getElementById('signup-name').value;
             const email = document.getElementById('signup-email').value;
             const password = document.getElementById('signup-password').value;
+            const referrerId = sessionStorage.getItem('referrerId');
 
             fetch('/api/auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email, password })
+                body: JSON.stringify({ name, email, password, referrerId })
             })
             .then(res => res.json())
             .then(data => {
