@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Side Hustle Trader</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"> 
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <link href="lib/animate/animate.min.css" rel="stylesheet">
+        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Topbar Start -->
+        <div class="container-fluid topbar px-0 d-none d-lg-block">
+            <div class="container px-0">
+                <div class="row gx-0 align-items-center" style="height: 45px;">
+                    <div class="col-lg-8 text-center text-lg-start mb-lg-0">
+                        <div class="d-flex flex-wrap">
+                            <a href="#" class="text-muted me-4"><i class="fas fa-map-marker-alt text-primary me-2"></i>Find A Location</a>
+                            <a href="#" class="text-muted me-4"><i class="fas fa-phone-alt text-primary me-2"></i>+01234567890</a>
+                            <a href="#" class="text-muted me-0"><i class="fas fa-envelope text-primary me-2"></i>Example@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 text-center text-lg-end">
+                        <div class="d-flex align-items-center justify-content-end">
+                            <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-3"><i class="fab fa-facebook-f text-white"></i></a>
+                            <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-3"><i class="fab fa-twitter text-white"></i></a>
+                            <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-3"><i class="fab fa-instagram text-white"></i></a>
+                            <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-0"><i class="fab fa-linkedin-in text-white"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Topbar End -->
+
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-fluid sticky-top px-0">
+            <div class="position-absolute bg-dark" style="left: 0; top: 0; width: 100%; height: 100%;">
+            </div>
+            <div class="container px-0">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-white py-3 px-4">
+                    <a href="home.html" class="navbar-brand p-0">
+                        <h1 class="text-primary m-0"><i class="fas fa-donate me-3"></i>Side Hustle Trader</h1>
+                        <!-- <img src="img/logo.png" alt="Logo"> -->
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="fa fa-bars"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <div class="navbar-nav ms-auto py-0">
+                            <a href="home.html" class="nav-item nav-link">Home</a>
+                            <div class="nav-item dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
+                                <div class="dropdown-menu m-0">
+                                    <a href="invest.html" class="dropdown-item">Invest</a>
+                                    <a href="invite.html" class="dropdown-item">Invite a friend</a>
+                                    <a href="about.html" class="dropdown-item">About</a>
+                                </div>
+                            </div>
+                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        </div>
+                        <!-- <div class="d-flex align-items-center flex-nowrap pt-xl-0">
+                            <button class="btn btn-primary btn-md-square mx-2" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search"></i></button>
+                            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 ms-2 flex-wrap flex-sm-shrink-0">Start</a>
+                        </div> -->
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+        <!-- Modal Search Start -->
+        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h4 class="modal-title mb-0" id="exampleModalLabel">Search by keyword</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center">
+                        <div class="input-group w-75 mx-auto d-flex">
+                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Search End -->
+
+        <!-- Header Start -->
+        <div class="container-fluid bg-breadcrumb">
+            <div class="bg-breadcrumb-single"></div>
+            <div class="container text-center py-5" style="max-width: 900px;">
+                <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Profile</h4>
+                <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active text-primary">User</li>
+                </ol>    
+            </div>
+        </div>
+        <!-- Header End -->
+
+        <!-- Settings Start -->
+        <div class="container-fluid faq py-5">
+            <div class="container py-5">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
+                        <div class="pb-5">
+                            <h4 class="text-primary">Profile</h4>
+                            <h1 class="display-4">Edit Profile</h1>
+                        </div>
+                       <div class="accordion bg-light rounded p-4" id="accordionExample">
+                            <div class="accordion-item border-0 mb-4">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button text-dark fs-5 fw-bold rounded-top" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseTOne">
+                                        Identity Info
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body my-2">
+                                        <h5>First Name:</h5>
+                                        <p><input type="text" class="form-control" name="first-name" id="first-name" placeholder="First Name"></p>
+                                        <h5>Last Name:</h5>
+                                        <p><input type="text" class="form-control" name="last-name" id="last-name" placeholder="Last Name"></p>
+                                        <h5>E-mail</h5>
+                                        <p><input type="email" class="form-control" name="email" id="e-mail" placeholder="E-mail Address"></p>
+                                        <h5>Phone Number:</h5>
+                                        <p><input type="tel" class="form-control" name="phone" id="phone" placeholder="Phone Number"></p>
+                                        <h5>Date Of Birth:</h5>
+                                        <p><input type="date" class="form-control" name="DoB" id="DoB" placeholder="00/00/0000"></p>
+                                        <h5>Country:</h5>
+                                        <select name=”country” class="form-control">
+                                            <option value=”AF”>Afghanistan 🇦🇫</option>
+                                            <option value=”AX”>Åland Islands 🇦🇽</option>
+                                            <option value=”AL”>Albania 🇦🇱</option>
+                                            <option value=”DZ”>Algeria 🇩🇿</option>
+                                            <option value=”AS”>American Samoa 🇦🇸</option>
+                                            <option value=”AD”>Andorra 🇦🇩</option>
+                                            <option value=”AO”>Angola 🇦🇴</option>
+                                            <option value=”AI”>Anguilla 🇦🇮</option>
+                                            <option value=”AQ”>Antarctica 🇦🇶</option>
+                                            <option value=”AG”>Antigua and Barbuda 🇦🇬</option>
+                                            <option value=”AR”>Argentina 🇦🇷</option>
+                                            <option value=”AM”>Armenia 🇦🇲</option>
+                                            <option value=”AW”>Aruba 🇦🇼</option>
+                                            <option value=”AU”>Australia 🇦🇺</option>
+                                            <option value=”AT”>Austria 🇦🇹</option>
+                                            <option value=”AZ”>Azerbaijan 🇦🇿</option>
+                                            <option value=”BS”>Bahamas 🇧🇸</option>
+                                            <option value=”BH”>Bahrain 🇧🇭</option>
+                                            <option value=”BD”>Bangladesh 🇧🇩</option>
+                                            <option value=”BB”>Barbados 🇧🇧</option>
+                                            <option value=”BY”>Belarus 🇧🇾</option>
+                                            <option value=”BE”>Belgium 🇧🇪</option>
+                                            <option value=”BZ”>Belize 🇧🇿</option>
+                                            <option value=”BJ”>Benin 🇧🇯</option>
+                                            <option value=”BM”>Bermuda 🇧🇲</option>
+                                            <option value=”BT”>Bhutan 🇧🇹</option>
+                                            <option value=”BO”>Bolivia, Plurinational State of 🇧🇴</option>
+                                            <option value=”BA”>Bosnia and Herzegovina 🇧🇦</option>
+                                            <option value=”BW”>Botswana 🇧🇼</option>
+                                            <option value=”BV”>Bouvet Island 🇧🇻</option>
+                                            <option value=”BR”>Brazil 🇧🇷</option>
+                                            <option value=”IO”>British Indian Ocean Territory 🇮🇴</option>
+                                            <option value=”BN”>Brunei Darussalam 🇧🇳</option>
+                                            <option value=”BG”>Bulgaria 🇧🇬</option>
+                                            <option value=”BF”>Burkina Faso 🇧🇫</option>
+                                            <option value=”BI”>Burundi 🇧🇮</option>
+                                            <option value=”KH”>Cambodia 🇰🇭</option>
+                                            <option value=”CM”>Cameroon 🇨🇲</option>
+                                            <option value=”CA”>Canada 🇨🇦</option>
+                                            <option value=”CV”>Cabo Verde 🇨🇻</option>
+                                            <option value=”KY”>Cayman Islands 🇰🇾</option>
+                                            <option value=”CF”>Central African Republic 🇨🇫</option>
+                                            <option value=”TD”>Chad 🇹🇩</option>
+                                            <option value=”CL”>Chile 🇨🇱</option>
+                                            <option value=”CN”>China 🇨🇳</option>
+                                            <option value=”CX”>Christmas Island 🇨🇽</option>
+                                            <option value=”CC”>Cocos (Keeling) Islands 🇨🇨</option>
+                                            <option value=”CO”>Colombia 🇨🇴</option>
+                                            <option value=”KM”>Comoros 🇰🇲</option>
+                                            <option value=”CG”>Congo 🇨🇬</option>
+                                            <option value=”CD”>Congo, The Democratic Republic of the 🇨🇩</option>
+                                            <option value=”CK”>Cook Islands 🇨🇰</option>
+                                            <option value=”CR”>Costa Rica 🇨🇷</option>
+                                            <option value=”CI”>Côte d’Ivoire 🇨🇮</option>
+                                            <option value=”HR”>Croatia 🇭🇷</option>
+                                            <option value=”CU”>Cuba 🇨🇺</option>
+                                            <option value=”CY”>Cyprus 🇨🇾</option>
+                                            <option value=”CZ”>Czechia 🇨🇿</option>
+                                            <option value=”DK”>Denmark 🇩🇰</option>
+                                            <option value=”DJ”>Djibouti 🇩🇯</option>
+                                            <option value=”DM”>Dominica 🇩🇲</option>
+                                            <option value=”DO”>Dominican Republic 🇩🇴</option>
+                                            <option value=”EC”>Ecuador 🇪🇨</option>
+                                            <option value=”EG”>Egypt 🇪🇬</option>
+                                            <option value=”SV”>El Salvador 🇸🇻</option>
+                                            <option value=”GQ”>Equatorial Guinea 🇬🇶</option>
+                                            <option value=”ER”>Eritrea 🇪🇷</option>
+                                            <option value=”EE”>Estonia 🇪🇪</option>
+                                            <option value=”SZ”>Eswatini 🇸🇿</option>
+                                            <option value=”ET”>Ethiopia 🇪🇹</option>
+                                            <option value=”FK”>Falkland Islands (Malvinas) 🇫🇰</option>
+                                            <option value=”FO”>Faroe Islands 🇫🇴</option>
+                                            <option value=”FJ”>Fiji 🇫🇯</option>
+                                            <option value=”FI”>Finland 🇫🇮</option>
+                                            <option value=”FR”>France 🇫🇷</option>
+                                            <option value=”GF”>French Guiana 🇬🇫</option>
+                                            <option value=”PF”>French Polynesia 🇵🇫</option>
+                                            <option value=”TF”>French Southern Territories 🇹🇫</option>
+                                            <option value=”GA”>Gabon 🇬🇦</option>
+                                            <option value=”GM”>Gambia 🇬🇲</option>
+                                            <option value=”GE”>Georgia 🇬🇪</option>
+                                            <option value=”DE”>Germany 🇩🇪</option>
+                                            <option value=”GH”>Ghana 🇬🇭</option>
+                                            <option value=”GI”>Gibraltar 🇬🇮</option>
+                                            <option value=”GR”>Greece 🇬🇷</option>
+                                            <option value=”GL”>Greenland 🇬🇱</option>
+                                            <option value=”GD”>Grenada 🇬🇩</option>
+                                            <option value=”GP”>Guadeloupe 🇬🇵</option>
+                                            <option value=”GU”>Guam 🇬🇺</option>
+                                            <option value=”GT”>Guatemala 🇬🇹</option>
+                                            <option value=”GG”>Guernsey 🇬🇬</option>
+                                            <option value=”GN”>Guinea 🇬🇳</option>
+                                            <option value=”GW”>Guinea-Bissau 🇬🇼</option>
+                                            <option value=”GY”>Guyana 🇬🇾</option>
+                                            <option value=”HT”>Haiti 🇭🇹</option>
+                                            <option value=”HM”>Heard Island and McDonald Islands 🇭🇲</option>
+                                            <option value=”VA”>Holy See (Vatican City State) 🇻🇦</option>
+                                            <option value=”HN”>Honduras 🇭🇳</option>
+                                            <option value=”HK”>Hong Kong 🇭🇰</option>
+                                            <option value=”HU”>Hungary 🇭🇺</option>
+                                            <option value=”IS”>Iceland 🇮🇸</option>
+                                            <option value=”IN”>India 🇮🇳</option>
+                                            <option value=”ID”>Indonesia 🇮🇩</option>
+                                            <option value=”IR”>Iran, Islamic Republic of 🇮🇷</option>
+                                            <option value=”IQ”>Iraq 🇮🇶</option>
+                                            <option value=”IE”>Ireland 🇮🇪</option>
+                                            <option value=”IM”>Isle of Man 🇮🇲</option>
+                                            <option value=”IL”>Israel 🇮🇱</option>
+                                            <option value=”IT”>Italy 🇮🇹</option>
+                                            <option value=”JM”>Jamaica 🇯🇲</option>
+                                            <option value=”JP”>Japan 🇯🇵</option>
+                                            <option value=”JE”>Jersey 🇯🇪</option>
+                                            <option value=”JO”>Jordan 🇯🇴</option>
+                                            <option value=”KZ”>Kazakhstan 🇰🇿</option>
+                                            <option value=”KE”>Kenya 🇰🇪</option>
+                                            <option value=”KI”>Kiribati 🇰🇮</option>
+                                            <option value=”KP”>Korea, Democratic People’s Republic of 🇰🇵</option>
+                                            <option value=”KR”>Korea, Republic of 🇰🇷</option>
+                                            <option value=”KW”>Kuwait 🇰🇼</option>
+                                            <option value=”KG”>Kyrgyzstan 🇰🇬</option>
+                                            <option value=”LA”>Lao People’s Democratic Republic 🇱🇦</option>
+                                            <option value=”LV”>Latvia 🇱🇻</option>
+                                            <option value=”LB”>Lebanon 🇱🇧</option>
+                                            <option value=”LS”>Lesotho 🇱🇸</option>
+                                            <option value=”LR”>Liberia 🇱🇷</option>
+                                            <option value=”LY”>Libya 🇱🇾</option>
+                                            <option value=”LI”>Liechtenstein 🇱🇮</option>
+                                            <option value=”LT”>Lithuania 🇱🇹</option>
+                                            <option value=”LU”>Luxembourg 🇱🇺</option>
+                                            <option value=”MO”>Macao 🇲🇴</option>
+                                            <option value=”MG”>Madagascar 🇲🇬</option>
+                                            <option value=”MW”>Malawi 🇲🇼</option>
+                                            <option value=”MY”>Malaysia 🇲🇾</option>
+                                            <option value=”MV”>Maldives 🇲🇻</option>
+                                            <option value=”ML”>Mali 🇲🇱</option>
+                                            <option value=”MT”>Malta 🇲🇹</option>
+                                            <option value=”MH”>Marshall Islands 🇲🇭</option>
+                                            <option value=”MQ”>Martinique 🇲🇶</option>
+                                            <option value=”MR”>Mauritania 🇲🇷</option>
+                                            <option value=”MU”>Mauritius 🇲🇺</option>
+                                            <option value=”YT”>Mayotte 🇾🇹</option>
+                                            <option value=”MX”>Mexico 🇲🇽</option>
+                                            <option value=”FM”>Micronesia, Federated States of 🇫🇲</option>
+                                            <option value=”MD”>Moldova, Republic of 🇲🇩</option>
+                                            <option value=”MC”>Monaco 🇲🇨</option>
+                                            <option value=”MN”>Mongolia 🇲🇳</option>
+                                            <option value=”ME”>Montenegro 🇲🇪</option>
+                                            <option value=”MS”>Montserrat 🇲🇸</option>
+                                            <option value=”MA”>Morocco 🇲🇦</option>
+                                            <option value=”MZ”>Mozambique 🇲🇿</option>
+                                            <option value=”MM”>Myanmar 🇲🇲</option>
+                                            <option value=”NA”>Namibia 🇳🇦</option>
+                                            <option value=”NR”>Nauru 🇳🇷</option>
+                                            <option value=”NP”>Nepal 🇳🇵</option>
+                                            <option value=”NL”>Netherlands, Kingdom of the 🇳🇱</option>
+                                            <option value=”AN”>Netherlands Antilles 🇳🇱</option>
+                                            <option value=”NC”>New Caledonia 🇳🇨</option>
+                                            <option value=”NZ”>New Zealand 🇳🇿</option>
+                                            <option value=”NI”>Nicaragua 🇳🇮</option>
+                                            <option value=”NE”>Niger 🇳🇪</option>
+                                            <option value=”NG”>Nigeria 🇳🇬</option>
+                                            <option value=”NU”>Niue 🇳🇺</option>
+                                            <option value=”NF”>Norfolk Island 🇳🇫</option>
+                                            <option value=”MP”>Northern Mariana Islands 🇲🇵</option>
+                                            <option value=”MK”>North Macedonia 🇲🇰</option>
+                                            <option value=”NO”>Norway 🇳🇴</option>
+                                            <option value=”OM”>Oman 🇴🇲</option>
+                                            <option value=”PK”>Pakistan 🇵🇰</option>
+                                            <option value=”PW”>Palau 🇵🇼</option>
+                                            <option value=”PS”>Palestine, State of 🇵🇸</option>
+                                            <option value=”PA”>Panama 🇵🇦</option>
+                                            <option value=”PG”>Papua New Guinea 🇵🇬</option>
+                                            <option value=”PY”>Paraguay 🇵🇾</option>
+                                            <option value=”PE”>Peru 🇵🇪</option>
+                                            <option value=”PH”>Philippines 🇵🇭</option>
+                                            <option value=”PN”>Pitcairn 🇵🇳</option>
+                                            <option value=”PL”>Poland 🇵🇱</option>
+                                            <option value=”PT”>Portugal 🇵🇹</option>
+                                            <option value=”PR”>Puerto Rico 🇵🇷</option>
+                                            <option value=”QA”>Qatar 🇶🇦</option>
+                                            <option value=”RE”>Réunion 🇷🇪</option>
+                                            <option value=”RO”>Romania 🇷🇴</option>
+                                            <option value=”RU”>Russian Federation 🇷🇺</option>
+                                            <option value=”RW”>Rwanda 🇷🇼</option>
+                                            <option value=”BL”>Saint Barthélemy 🇧🇱</option>
+                                            <option value=”SH”>Saint Helena, Ascension and Tristan da Cunha 🇸🇭</option>
+                                            <option value=”KN”>Saint Kitts and Nevis 🇰🇳</option>
+                                            <option value=”LC”>Saint Lucia 🇱🇨</option>
+                                            <option value=”MF”>Saint Martin 🇲🇫</option>
+                                            <option value=”PM”>Saint Pierre and Miquelon 🇵🇲</option>
+                                            <option value=”VC”>Saint Vincent and the Grenadines 🇻🇨</option>
+                                            <option value=”WS”>Samoa 🇼🇸</option>
+                                            <option value=”SM”>San Marino 🇸🇲</option>
+                                            <option value=”ST”>Sao Tome and Principe 🇸🇹</option>
+                                            <option value=”SA”>Saudi Arabia 🇸🇦</option>
+                                            <option value=”SN”>Senegal 🇸🇳</option>
+                                            <option value=”RS”>Serbia 🇷🇸</option>
+                                            <option value=”SC”>Seychelles 🇸🇨</option>
+                                            <option value=”SL”>Sierra Leone 🇸🇱</option>
+                                            <option value=”SG”>Singapore 🇸🇬</option>
+                                            <option value=”SK”>Slovakia 🇸🇰</option>
+                                            <option value=”SI”>Slovenia 🇸🇮</option>
+                                            <option value=”SB”>Solomon Islands 🇸🇧</option>
+                                            <option value=”SO”>Somalia 🇸🇴</option>
+                                            <option value=”ZA”>South Africa 🇿🇦</option>
+                                            <option value=”GS”>South Georgia and the South Sandwich Islands 🇬🇸</option>
+                                            <option value=”ES”>Spain 🇪🇸</option>
+                                            <option value=”LK”>Sri Lanka 🇱🇰</option>
+                                            <option value=”SD”>Sudan 🇸🇩</option>
+                                            <option value=”SR”>Suriname 🇸🇷</option>
+                                            <option value=”SJ”>Svalbard and Jan Mayen 🇸🇯</option>
+                                            <option value=”SE”>Sweden 🇸🇪</option>
+                                            <option value=”CH”>Switzerland 🇨🇭</option>
+                                            <option value=”SY”>Syrian Arab Republic 🇸🇾</option>
+                                            <option value=”TW”>Taiwan, Province of China 🇹🇼</option>
+                                            <option value=”TJ”>Tajikistan 🇹🇯</option>
+                                            <option value=”TZ”>Tanzania, United Republic of 🇹🇿</option>
+                                            <option value=”TH”>Thailand 🇹🇭</option>
+                                            <option value=”TL”>Timor-Leste 🇹🇱</option>
+                                            <option value=”TG”>Togo 🇹🇬</option>
+                                            <option value=”TK”>Tokelau 🇹🇰</option>
+                                            <option value=”TO”>Tonga 🇹🇴</option>
+                                            <option value=”TT”>Trinidad and Tobago 🇹🇹</option>
+                                            <option value=”TN”>Tunisia 🇹🇳</option>
+                                            <option value=”TM”>Turkmenistan 🇹🇲</option>
+                                            <option value=”TC”>Turks and Caicos Islands 🇹🇨</option>
+                                            <option value=”TV”>Tuvalu 🇹🇻</option>
+                                            <option value=”TR”>Türkiye 🇹🇷</option>
+                                            <option value=”UG”>Uganda 🇺🇬</option>
+                                            <option value=”UA”>Ukraine 🇺🇦</option>
+                                            <option value=”AE”>United Arab Emirates 🇦🇪</option>
+                                            <option value=”GB”>United Kingdom 🇬🇧</option>
+                                            <option value=”US”>United States of America 🇺🇸</option>
+                                            <option value=”UM”>United States Minor Outlying Islands 🇺🇸</option>
+                                            <option value=”UY”>Uruguay 🇺🇾</option>
+                                            <option value=”UZ”>Uzbekistan 🇺🇿</option>
+                                            <option value=”VU”>Vanuatu 🇻🇺</option>
+                                            <option value=”VE”>Venezuela, Bolivarian Republic of 🇻🇪</option>
+                                            <option value=”VN”>Viet Nam 🇻🇳</option>
+                                            <option value=”VG”>Virgin Islands, British 🇻🇬</option>
+                                            <option value=”VI”>Virgin Islands, U.S. 🇻🇮</option>
+                                            <option value=”WF”>Wallis and Futuna 🇼🇫</option>
+                                            <option value=”EH”>Western Sahara 🇪🇭</option>
+                                            <option value=”YE”>Yemen 🇾🇪</option>
+                                            <option value=”ZM”>Zambia 🇿🇲</option>
+                                            <option value=”ZW”>Zimbabwe 🇿🇼</option>
+                                          </select>
+                                          
+                                        <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4 ms-2 flex-wrap flex-sm-shrink-0" id="save-identity-btn">Save</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item border-0 mb-4">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed text-dark fs-5 fw-bold rounded-top" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Social Trading 
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body my-2">
+                                        <h5>Nickname:</h5>
+                                        <p><input type="text" class="form-control" name="nick-name" id="nick-name" placeholder="Nickname"></p>
+                                        <button class="btn btn-primary rounded-pill text-white py-2 px-4" id="save-social-btn">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item border-0 mb-4">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed text-dark fs-5 fw-bold rounded-top" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Payment Options
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body my-2">
+                                        <h5>Saved Payment Methods:</h5>
+                                        <div id="saved-payment-methods" class="mb-4">
+                                            <p class="text-muted">No saved payment methods yet.</p>
+                                        </div>
+                                        <hr>
+                                        <h5>Add Payment Method:</h5>
+                                         <div class="mb-3">
+                                             <label class="form-label">Method Type</label>
+                                             <select id="payment-type" class="form-control">
+                                                 <option value="momo">Mobile Money (MoMo)</option>
+                                                 <option value="card">Bank Card (Visa/Mastercard)</option>
+                                                 <option value="crypto">Cryptocurrency Deposit</option>
+                                             </select>
+                                         </div>
+
+                                         <!-- Mobile Money Fields -->
+                                         <div id="momo-fields" class="payment-method-fields">
+                                             <div class="mb-3">
+                                                 <label class="form-label">MoMo Network Provider</label>
+                                                 <select id="momo-provider" class="form-control">
+                                                     <option value="MTN">MTN Mobile Money</option>
+                                                     <option value="Telecel Cash">Telecel Cash</option>
+                                                     <option value="AirtelTigo">AirtelTigo Cash</option>
+                                                 </select>
+                                             </div>
+                                             <div class="mb-3">
+                                                 <label class="form-label">MoMo Account Number</label>
+                                                 <input type="text" id="momo-number" class="form-control" placeholder="e.g. 0244123456">
+                                             </div>
+                                             <div class="mb-3">
+                                                 <label class="form-label">MoMo Account Name</label>
+                                                 <input type="text" id="momo-name" class="form-control" placeholder="e.g. Samuel Amponsah">
+                                             </div>
+                                             <button id="add-momo-btn" class="btn btn-primary rounded-pill text-white py-2 px-4 w-100 mt-2">Save MoMo Account</button>
+                                         </div>
+
+                                         <!-- Bank Card Fields -->
+                                         <div id="card-fields" class="payment-method-fields" style="display: none;">
+                                             <div class="mb-3">
+                                                 <label class="form-label">Card Provider</label>
+                                                 <select id="card-provider" class="form-control">
+                                                     <option value="Visa">Visa Card</option>
+                                                     <option value="Mastercard">Mastercard</option>
+                                                 </select>
+                                             </div>
+                                             <div class="mb-3">
+                                                 <label class="form-label">Card Number</label>
+                                                 <input type="text" id="card-number" class="form-control" placeholder="4111 2222 3333 4444">
+                                             </div>
+                                             <div class="mb-3">
+                                                 <label class="form-label">Cardholder Name</label>
+                                                 <input type="text" id="card-name" class="form-control" placeholder="e.g. John Doe">
+                                             </div>
+                                             <div class="row">
+                                                 <div class="col-6 mb-3">
+                                                     <label class="form-label">Expiry Date</label>
+                                                     <input type="text" id="card-expiry" class="form-control" placeholder="MM/YY">
+                                                 </div>
+                                                 <div class="col-6 mb-3">
+                                                     <label class="form-label">CVV</label>
+                                                     <input type="password" id="card-cvv" class="form-control" placeholder="123" maxlength="3">
+                                                 </div>
+                                             </div>
+                                             <button id="add-card-btn" class="btn btn-primary rounded-pill text-white py-2 px-4 w-100 mt-2">Save Card Details</button>
+                                         </div>
+
+                                         <!-- Crypto Fields -->
+                                         <div id="crypto-fields" class="payment-method-fields" style="display: none;">
+                                             <div class="alert alert-warning">
+                                                 <p class="mb-1"><strong>Deposit Wallet Address:</strong></p>
+                                                 <div class="input-group mb-2">
+                                                     <input type="text" id="company-wallet-addr" class="form-control bg-light text-dark font-monospace" value="TYd45kLsmvW34mNZqEwLg3b1a8c90KjL92" readonly>
+                                                     <button class="btn btn-outline-dark btn-sm" id="copy-wallet-btn">Copy</button>
+                                                 </div>
+                                                 <small class="text-dark">Send USDT (TRC-20) network token to this address. Fill in details below to confirm.</small>
+                                             </div>
+                                             <div class="mb-3">
+                                                 <label class="form-label">Amount (GHC value to deposit)</label>
+                                                 <input type="number" id="crypto-amount" class="form-control" placeholder="e.g. 500">
+                                             </div>
+                                             <button id="crypto-confirm-btn" class="btn btn-success rounded-pill text-white py-2 px-4 w-100 mt-2">I have paid</button>
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item border-0 mb-0">
+                                <h2 class="accordion-header" id="headingFour">
+                                    <button class="accordion-button collapsed text-dark fs-5 fw-bold rounded-top" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        Active Investments & Withdrawals
+                                    </button>
+                                </h2>
+                                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body my-2">
+                                        <h5>My Investments:</h5>
+                                        <div id="investments-list" class="mb-4">
+                                            <p class="text-muted">No investments yet.</p>
+                                        </div>
+                                        <hr>
+                                        <h5>Withdrawals History:</h5>
+                                        <div id="withdrawals-list">
+                                            <p class="text-muted">No withdrawals yet.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+        <!-- Settings End -->
+
+        <!-- Footer Start -->
+        <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item d-flex flex-column">
+                            <div class="footer-item">
+                                <h4 class="text-white mb-4">Newsletter</h4>
+                                <p class="mb-3">Welcome to Side Hustle Trader, where expertise meets innovation in the world of trading. Established in 2003, we have grown to become a trusted name in the industry, offering tailored solutions to meet the diverse needs of our clients.</p>
+                                <div class="position-relative mx-auto rounded-pill">
+                                    <input class="form-control rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Enter your email">
+                                    <button type="button" class="btn btn-primary rounded-pill position-absolute top-0 end-0 py-2 mt-2 me-2">SignUp</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item d-flex flex-column">
+                            <h4 class="text-white mb-4">Explore</h4>
+                            <a href="#"><i class="fas fa-angle-right me-2"></i> Home</a>
+                            <a href="#"><i class="fas fa-angle-right me-2"></i> Services</a>
+                            <a href="#"><i class="fas fa-angle-right me-2"></i> About Us</a>
+                            <a href="#"><i class="fas fa-angle-right me-2"></i> Latest Projects</a>
+                            <a href="#"><i class="fas fa-angle-right me-2"></i> testimonial</a>
+                            <a href="#"><i class="fas fa-angle-right me-2"></i> Our Team</a>
+                            <a href="#"><i class="fas fa-angle-right me-2"></i> Contact Us</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item d-flex flex-column">
+                            <h4 class="text-white mb-4">Contact Info</h4>
+                            <a href=""><i class="fa fa-map-marker-alt me-2"></i> 123 Street, New York, USA</a>
+                            <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
+                            <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
+                            <a href=""><i class="fas fa-phone me-2"></i> +012 345 67890</a>
+                            <a href="" class="mb-3"><i class="fas fa-print me-2"></i> +012 345 67890</a>
+                            <div class="d-flex align-items-center">
+                                <a class="btn btn-light btn-md-square me-2" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-light btn-md-square me-2" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-light btn-md-square me-2" href=""><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-light btn-md-square me-0" href=""><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item-post d-flex flex-column">
+                            <h4 class="text-white mb-4">Popular Post</h4>
+                            <div class="d-flex flex-column mb-3">
+                                <p class="text-uppercase text-primary mb-2">Investment</p>
+                                <a href="#" class="text-body">Revisiting Your Investment & Distribution Goals</a>
+                            </div>
+                            <div class="d-flex flex-column mb-3">
+                                <p class="text-uppercase text-primary mb-2">Business</p>
+                                <a href="#" class="text-body">Dimensional Fund Advisors Interview with Director</a>
+                            </div>
+                            <div class="footer-btn text-start">
+                                <a href="#" class="btn btn-light rounded-pill px-4">View All Post <i class="fa fa-arrow-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        
+        <!-- Copyright Start -->
+        <div class="container-fluid copyright py-4">
+            <div class="container">
+                <div class="row g-4 align-items-center">
+                    <div class="col-md-6 text-center text-md-start mb-md-0">
+                        <span class="text-body"><a href="#" class="border-bottom text-primary"><i class="fas fa-copyright text-light me-2"></i>Your Site Name</a>, All right reserved.</span>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end text-body">
+                        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
+                        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
+                        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
+                        Designed By <a class="border-bottom text-primary" href="https://htmlcodex.com">HTML Codex</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>   
+
+        
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+    
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/profile.js"></script>
+    </body>
+
+</html>

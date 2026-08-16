@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Side Hustle Trader</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"> 
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <link href="lib/animate/animate.min.css" rel="stylesheet">
+        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Topbar Start -->
+        <div class="container-fluid topbar px-0 d-none d-lg-block">
+            <div class="container px-0">
+                <div class="row gx-0 align-items-center" style="height: 45px;">
+                    <div class="col-lg-8 text-center text-lg-start mb-lg-0">
+                        <div class="d-flex flex-wrap">
+                            <a href="#" class="text-muted me-4"><i class="fas fa-map-marker-alt text-primary me-2"></i>Find A Location</a>
+                            <a href="#" class="text-muted me-4"><i class="fas fa-phone-alt text-primary me-2"></i>+01234567890</a>
+                            <a href="#" class="text-muted me-0"><i class="fas fa-envelope text-primary me-2"></i>Example@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 text-center text-lg-end">
+                        <div class="d-flex align-items-center justify-content-end">
+                            <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-3"><i class="fab fa-facebook-f text-white"></i></a>
+                            <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-3"><i class="fab fa-twitter text-white"></i></a>
+                            <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-3"><i class="fab fa-instagram text-white"></i></a>
+                            <a href="#" class="btn btn-primary btn-square rounded-circle nav-fill me-0"><i class="fab fa-linkedin-in text-white"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Topbar End -->
+
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-fluid sticky-top px-0">
+            <div class="position-absolute bg-dark" style="left: 0; top: 0; width: 100%; height: 100%;">
+            </div>
+            <div class="container px-0">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-white py-3 px-4">
+                    <a href="home.html" class="navbar-brand p-0">
+                        <h1 class="text-primary m-0"><i class="fas fa-donate me-3"></i>Side Hustle Trader</h1>
+                        <!-- <img src="img/logo.png" alt="Logo"> -->
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="fa fa-bars"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <div class="navbar-nav ms-auto py-0">
+                            <!-- Cisco don't touch -->
+                            </div>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Menu</a>
+                                <div class="dropdown-menu m-0">
+                                    <a href="#" class="dropdown-item">Withdraw</a>
+                                    <a href="#" class="dropdown-item">W. History</a>
+                                    <a href="#" class="dropdown-item">Total Earnings</a>
+                                </div>
+                            </div>
+                            <div class="nav-item dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
+                                <div class="dropdown-menu m-0">
+                                    <a href="invest.html" class="dropdown-item">Invest</a>
+                                    <a href="invite.html" class="dropdown-item">Invite a friend</a>
+                                    <a href="about.html" class="dropdown-item">About</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center flex-nowrap pt-xl-0">
+                            <button class="btn btn-primary btn-md-square mx-2" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search"></i></button>
+                            <a href="profile.html" class="btn btn-primary rounded-pill text-white py-2 px-4 ms-2 flex-wrap flex-sm-shrink-0">User</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+        <!-- Modal Search Start -->
+        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h4 class="modal-title mb-0" id="exampleModalLabel">Search by keyword</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center">
+                        <div class="input-group w-75 mx-auto d-flex">
+                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Search End -->
+
+
+
+
+
+        <!-- Dashboard Start -->
+        <div class="container-fluid py-5">
+            <div class="container">
+                <div class="row g-4 mb-5">
+                    <!-- Balance Card -->
+                    <div class="col-md-4">
+                        <div class="bg-light p-4 rounded text-center shadow-sm">
+                            <div class="text-primary mb-2"><i class="fas fa-wallet fa-3x"></i></div>
+                            <h5 class="text-dark">Account Balance</h5>
+                            <h3 class="display-6 text-primary">GHC <span id="user-balance">0.00</span></h3>
+                            <button class="btn btn-primary rounded-pill mt-3 w-100" data-bs-toggle="modal" data-bs-target="#withdrawModal">Withdraw Funds</button>
+                        </div>
+                    </div>
+                    <!-- Earnings Card -->
+                    <div class="col-md-4">
+                        <div class="bg-light p-4 rounded text-center shadow-sm">
+                            <div class="text-success mb-2"><i class="fas fa-hand-holding-usd fa-3x"></i></div>
+                            <h5 class="text-dark">Total Yield Earnings</h5>
+                            <h3 class="display-6 text-success">GHC <span id="user-earnings">0.00</span></h3>
+                            <button id="simulate-yield-btn" class="btn btn-success rounded-pill mt-3 w-100">Simulate 1-Day Return</button>
+                        </div>
+                    </div>
+                    <!-- Tier / Referral Card -->
+                    <div class="col-md-4">
+                        <div class="bg-light p-4 rounded text-center shadow-sm">
+                            <div class="text-warning mb-2"><i class="fas fa-crown fa-3x"></i></div>
+                            <h5 class="text-dark">Current Tier</h5>
+                            <h3 class="display-6 text-warning" id="user-tier">Level 1</h3>
+                            <p class="text-muted mt-3 mb-0">Total Referrals: <strong id="user-referrals">0</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-carousel owl-carousel wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="project-item h-100 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="project-img">
+                            <img src="img/projects-1.jpg" class="img-fluid w-100 rounded" alt="Image">
+                        </div>
+                        <div class="project-content bg-light rounded p-4">
+                            <div class="project-content-inner">
+                                <div class="project-icon mb-3"><i class="fas fa-chart-line fa-4x text-primary"></i></div>
+                                <p class="text-dark fs-5 mb-3">Invest</p>
+                                <a href="#" class="h4">Invest to increase your daily earning rate</a>
+                                <div class="pt-4">
+                                    <a class="btn btn-light rounded-pill py-3 px-5" href="invest.html">Invest</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-item h-100 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="project-img">
+                            <img src="img/projects-1.jpg" class="img-fluid w-100 rounded" alt="Image">
+                        </div>
+                        <div class="project-content bg-light rounded p-4">
+                            <div class="project-content-inner">
+                                <div class="project-icon mb-3"><i class="fas fa-signal fa-4x text-primary"></i></div>
+                                <p class="text-dark fs-5 mb-3">Refer a Friend</p>
+                                <a href="#" class="h4">Refer a friend to increase Tier Level</a>
+                                <div class="pt-4">
+                                    <a class="btn btn-light rounded-pill py-3 px-5" href="invite.html">Refer a Friend</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-item h-100">
+                        <div class="project-img">
+                            <img src="img/projects-1.jpg" class="img-fluid w-100 rounded" alt="Image">
+                        </div>
+                        <div class="project-content bg-light rounded p-4">
+                            <div class="project-content-inner">
+                                <div class="project-icon mb-3"><i class="fas fa-signal fa-4x text-primary"></i></div>
+                                <p class="text-dark fs-5 mb-3">About</p>
+                                <a href="#" class="h4">Find out more about us</a>
+                                <div class="pt-4">
+                                    <a class="btn btn-light rounded-pill py-3 px-5" href="about.html">About</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Menu End -->
+
+
+ <!-- Footer Start -->
+ <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="footer-item d-flex flex-column">
+                    <div class="footer-item">
+                        <h4 class="text-white mb-4">Newsletter</h4>
+                        <p class="mb-3">Welcome to Side Hustle Trader, where expertise meets innovation in the world of trading. Established in 2003, we have grown to become a trusted name in the industry, offering tailored solutions to meet the diverse needs of our clients.</p>
+                        <div class="position-relative mx-auto rounded-pill">
+                            <input class="form-control rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="footer-item d-flex flex-column">
+                    <h4 class="text-white mb-4">Explore</h4>
+                    <a href="#"><i class="fas fa-angle-right me-2"></i> Home</a>
+                    <a href="#"><i class="fas fa-angle-right me-2"></i> Services</a>
+                    <a href="#"><i class="fas fa-angle-right me-2"></i> About Us</a>
+                    <a href="#"><i class="fas fa-angle-right me-2"></i> Latest Projects</a>
+                    <a href="#"><i class="fas fa-angle-right me-2"></i> testimonial</a>
+                    <a href="#"><i class="fas fa-angle-right me-2"></i> Our Team</a>
+                    <a href="#"><i class="fas fa-angle-right me-2"></i> Contact Us</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="footer-item d-flex flex-column">
+                    <h4 class="text-white mb-4">Contact Info</h4>
+                    <a href=""><i class="fa fa-map-marker-alt me-2"></i> 123 Street, New York, USA</a>
+                    <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
+                    <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
+                    <a href=""><i class="fas fa-phone me-2"></i> +012 345 67890</a>
+                    <a href="" class="mb-3"><i class="fas fa-print me-2"></i> +012 345 67890</a>
+                    <div class="d-flex align-items-center">
+                        <a class="btn btn-light btn-md-square me-2" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-light btn-md-square me-2" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-light btn-md-square me-2" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-light btn-md-square me-0" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="footer-item-post d-flex flex-column">
+                    <h4 class="text-white mb-4">Popular Post</h4>
+                    <div class="d-flex flex-column mb-3">
+                        <p class="text-uppercase text-primary mb-2">Investment</p>
+                        <a href="#" class="text-body">Revisiting Your Investment & Distribution Goals</a>
+                    </div>
+                    <div class="d-flex flex-column mb-3">
+                        <p class="text-uppercase text-primary mb-2">Business</p>
+                        <a href="#" class="text-body">Dimensional Fund Advisors Interview with Director</a>
+                    </div>
+                    <div class="footer-btn text-start">
+                        <a href="#" class="btn btn-light rounded-pill px-4">View All Post <i class="fa fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+        
+        <!-- Copyright Start -->
+        <div class="container-fluid copyright py-4">
+            <div class="container">
+                <div class="row g-4 align-items-center">
+                    <div class="col-md-6 text-center text-md-start mb-md-0">
+                        <span class="text-body"><a href="#" class="border-bottom text-primary"><i class="fas fa-copyright text-light me-2"></i>Side Hustle Trader</a>, All right reserved.</span>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end text-body">
+                        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
+                        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
+                        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
+                        Designed By <a class="border-bottom text-primary" href="https://htmlcodex.com">HTML Codex</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>   
+
+        <!-- Withdraw Modal -->
+        <div class="modal fade" id="withdrawModal" tabindex="-1" aria-labelledby="withdrawModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content text-dark">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="withdrawModalLabel">Withdraw Funds</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Available Balance: <strong>GHC <span id="modal-available-balance">0.00</span></strong></p>
+                        <div class="mb-3">
+                            <label class="form-label">Withdrawal Amount (GHC)</label>
+                            <input type="number" id="withdraw-amount" class="form-control" placeholder="Enter amount" min="1">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Select Payment Method</label>
+                            <select id="withdraw-payment-method" class="form-control">
+                                <option value="">-- Select Saved Method --</option>
+                            </select>
+                            <small class="text-muted"><a href="profile.html">Add or edit payment methods in your Profile.</a></small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" id="confirm-withdraw-btn" class="btn btn-primary">Confirm Withdraw</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+    
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/home.js"></script>
+    </body>
+
+</html>
