@@ -279,22 +279,25 @@ function renderPaymentMethods(methods) {
 }
 
 function deletePaymentMethod(id) {
-    if (!confirm('Are you sure you want to delete this payment method?')) return;
+    // Use UI confirm dialog instead of native confirm
+    confirmDialog('Are you sure you want to delete this payment method?').then(confirmed => {
+        if (!confirmed) return;
 
-    fetch(`/api/payment/delete/${id}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            showToast('Payment method deleted.', 'success');
-            loadProfileDetails();
-        } else {
-            showToast(data.error || 'Failed to delete payment method.', 'error');
-        }
-    })
-    .catch(err => console.error(err));
+        fetch(`/api/payment/delete/${id}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                showToast('Payment method deleted.', 'success');
+                loadProfileDetails();
+            } else {
+                showToast(data.error || 'Failed to delete payment method.', 'error');
+            }
+        })
+        .catch(err => console.error(err));
+    });
 }
 
 function renderInvestments(investments) {

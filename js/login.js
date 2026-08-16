@@ -85,7 +85,12 @@ let mainF = (e) => {
                 if (data.success) {
                     showToast('Logged in successfully! Redirecting...', 'success');
                     setTimeout(() => {
-                        window.location.href = '/home.html';
+                        // If server indicated the user is an admin, go to admin dashboard
+                        if (data.is_admin) {
+                            window.location.href = '/admin.html';
+                        } else {
+                            window.location.href = '/home.html';
+                        }
                     }, 1000);
                 } else {
                     showToast(data.error || 'Invalid credentials.', 'error');

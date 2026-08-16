@@ -123,7 +123,8 @@ app.post('/api/auth/login', (req, res) => {
             }
             
             req.session.userId = user.id;
-            res.json({ success: true, message: 'Logged in successfully!' });
+            // Return admin flag so the frontend can redirect admins to the admin dashboard
+            res.json({ success: true, message: 'Logged in successfully!', is_admin: !!user.is_admin });
         });
     });
 });

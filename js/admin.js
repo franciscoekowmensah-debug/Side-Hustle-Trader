@@ -282,7 +282,8 @@ function viewUserDetails(userId) {
 }
 
 function deleteUserAccount(userId, userName) {
-    if (confirm(`Are you absolutely sure you want to delete the account for "${userName}"? This action cannot be undone!`)) {
+    confirmDialog(`Are you absolutely sure you want to delete the account for "${userName}"? This action cannot be undone!`).then(confirmed => {
+        if (!confirmed) return;
         fetch(`/api/admin/users/${userId}`, { method: 'DELETE' })
             .then(res => res.json())
             .then(data => {
@@ -297,11 +298,12 @@ function deleteUserAccount(userId, userName) {
                 console.error(err);
                 showToast('Error deleting account.', 'error');
             });
-    }
+    });
 }
 
 function approveDeposit(depositId) {
-    if (confirm('Approve this deposit request? This will credit the user\'s balance.')) {
+    confirmDialog('Approve this deposit request? This will credit the user\'s balance.').then(confirmed => {
+        if (!confirmed) return;
         fetch(`/api/admin/deposits/approve/${depositId}`, { method: 'POST' })
             .then(res => res.json())
             .then(data => {
@@ -316,11 +318,12 @@ function approveDeposit(depositId) {
                 console.error(err);
                 showToast('Error approving deposit.', 'error');
             });
-    }
+    });
 }
 
 function rejectDeposit(depositId) {
-    if (confirm('Are you sure you want to reject this deposit request?')) {
+    confirmDialog('Are you sure you want to reject this deposit request?').then(confirmed => {
+        if (!confirmed) return;
         fetch(`/api/admin/deposits/reject/${depositId}`, { method: 'POST' })
             .then(res => res.json())
             .then(data => {
@@ -335,5 +338,5 @@ function rejectDeposit(depositId) {
                 console.error(err);
                 showToast('Error rejecting deposit.', 'error');
             });
-    }
+    });
 }

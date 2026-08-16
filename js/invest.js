@@ -25,27 +25,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            if (!confirm(`Are you sure you want to invest GHC ${amount} in the ${planName} plan?`)) {
-                return;
-            }
+            confirmDialog(`Are you sure you want to invest GHC ${amount} in the ${planName} plan?`).then(confirmed => {
+                if (!confirmed) return;
 
-            fetch('/api/invest', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ plan_name: planName, amount: amount })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    showToast(data.message, 'success');
-                    loadUserBalance();
-                } else {
-                    showToast(data.error || 'Failed to complete investment.', 'error');
-                }
-            })
-            .catch(err => {
-                console.error(err);
-                showToast('An error occurred processing your investment.', 'error');
+                fetch('/api/invest', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ plan_name: planName, amount: amount })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        showToast(data.message, 'success');
+                        loadUserBalance();
+                    } else {
+                        showToast(data.error || 'Failed to complete investment.', 'error');
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    showToast('An error occurred processing your investment.', 'error');
+                });
             });
         });
     });
