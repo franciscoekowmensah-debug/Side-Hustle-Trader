@@ -18,7 +18,7 @@ app.use(session({
 }));
 
 // Route guard middleware for secure static pages
-const securePages = ['/home.html', '/profile.html', '/invest.html', '/invite.html'];
+const securePages = ['/home.html', '/profile.html', '/invest.html', '/invite.html', '/admin.html'];
 app.use((req, res, next) => {
     const isSecurePath = securePages.some(page => req.path.endsWith(page) || req.path === page);
     
@@ -28,6 +28,16 @@ app.use((req, res, next) => {
     
     if (req.path.endsWith('/login.html') && req.session.userId) {
         return res.redirect('/home.html');
+    }
+
+    if ((req.path.endsWith('/admin.html') || req.path === '/admin.html') && req.session.userId) {
+        db.get(`SELECT is_admin FROM users WHERE id = ?`, [req.session.userId], (err, user) => {
+            if (err || !user || !user.is_admin) {
+                return res.redirect('/home.html');
+            }
+            next();
+        });
+        return;
     }
     
     next();
@@ -98,8 +108,8 @@ app.post('/api/auth/login', (req, res) => {
         return res.status(400).json({ error: 'Email and password are required.' });
     }
     
-    const sql = `SELECT * FROM users WHERE email = ?`;
-    db.get(sql, [email], (err, user) => {
+    const sql = `SELECT * FROM users WHERE email = ? OR name = ?`;
+    db.get(sql, [email, email], (err, user) => {
         if (err) {
             return res.status(500).json({ error: 'Server error during sign in.' });
         }
@@ -135,7 +145,7 @@ app.get('/api/auth/me', (req, res) => {
         return res.status(401).json({ error: 'Unauthorized.' });
     }
     
-    const userSql = `SELECT id, name, email, first_name, last_name, phone, dob, country, avatar, nickname, tier_level, balance, earnings, invites_count FROM users WHERE id = ?`;
+    const userSql = `SELECT id, name, email, first_name, last_name, phone, dob, country, avatar, nickname, tier_level, balance, earnings, invites_count, is_admin FROM users WHERE id = ?`;
     
     db.get(userSql, [req.session.userId], (err, user) => {
         if (err || !user) {
@@ -335,17 +345,181 @@ app.post('/api/deposit/crypto', (req, res) => {
         return res.status(400).json({ error: 'Invalid deposit amount or wallet address.' });
     }
     
-    db.serialize(() => {
-        // Record deposit
-        db.run(`INSERT INTO deposits (user_id, amount, wallet_address, status) VALUES (?, ?, ?, 'completed')`,
-            [req.session.userId, depAmount, wallet_address]);
-            
-        // Credit user balance directly (simulation of received funds)
-        db.run(`UPDATE users SET balance = balance + ? WHERE id = ?`, [depAmount, req.session.userId], function(err) {
+    // Record deposit with 'pending' status. DO NOT credit user balance yet.
+    db.run(`INSERT INTO deposits (user_id, amount, wallet_address, status) VALUES (?, ?, ?, 'pending')`,
+        [req.session.userId, depAmount, wallet_address], function(err) {
             if (err) {
-                return res.status(500).json({ error: 'Failed to update balance.' });
+                return res.status(500).json({ error: 'Failed to submit deposit confirmation.' });
             }
-            res.json({ success: true, message: `Deposit request received! GHC ${depAmount} has been credited to your account balance.` });
+            res.json({ success: true, message: `Deposit request submitted! Once approved by the administrator, GHC ${depAmount} will reflect in your balance.` });
+        }
+    );
+});
+
+// Change Password Endpoint
+app.post('/api/profile/change-password', (req, res) => {
+    if (!req.session.userId) {
+        return res.status(401).json({ error: 'Unauthorized.' });
+    }
+    
+    const { current_password, new_password } = req.body;
+    if (!current_password || !new_password) {
+        return res.status(400).json({ error: 'Current password and new password are required.' });
+    }
+    
+    db.get(`SELECT password FROM users WHERE id = ?`, [req.session.userId], (err, user) => {
+        if (err || !user) {
+            return res.status(500).json({ error: 'Failed to retrieve user.' });
+        }
+        
+        bcrypt.compare(current_password, user.password, (err, matches) => {
+            if (err || !matches) {
+                return res.status(400).json({ error: 'Incorrect current password.' });
+            }
+            
+            bcrypt.hash(new_password, 10, (err, hashedPassword) => {
+                if (err) {
+                    return res.status(500).json({ error: 'Encryption error.' });
+                }
+                
+                db.run(`UPDATE users SET password = ? WHERE id = ?`, [hashedPassword, req.session.userId], function(err) {
+                    if (err) {
+                        return res.status(500).json({ error: 'Failed to update password.' });
+                    }
+                    res.json({ success: true, message: 'Password updated successfully!' });
+                });
+            });
+        });
+    });
+});
+
+// Admin Middleware
+const isAdmin = (req, res, next) => {
+    if (!req.session.userId) {
+        return res.status(401).json({ error: 'Unauthorized.' });
+    }
+    db.get(`SELECT is_admin FROM users WHERE id = ?`, [req.session.userId], (err, user) => {
+        if (err || !user || !user.is_admin) {
+            return res.status(403).json({ error: 'Forbidden. Admin access required.' });
+        }
+        next();
+    });
+};
+
+// Admin check for frontend
+app.get('/api/admin/check', isAdmin, (req, res) => {
+    res.json({ success: true, message: 'Admin verified.' });
+});
+
+// Get all users
+app.get('/api/admin/users', isAdmin, (req, res) => {
+    db.all(`SELECT id, name, email, first_name, last_name, phone, dob, country, avatar, nickname, tier_level, balance, earnings, invites_count, is_admin FROM users ORDER BY name ASC`, (err, users) => {
+        if (err) {
+            return res.status(500).json({ error: 'Failed to retrieve users.' });
+        }
+        res.json({ success: true, users });
+    });
+});
+
+// Get a single user details (with investments, withdrawals, deposits, payment methods)
+app.get('/api/admin/users/:id', isAdmin, (req, res) => {
+    const userId = req.params.id;
+    db.get(`SELECT id, name, email, first_name, last_name, phone, dob, country, avatar, nickname, tier_level, balance, earnings, invites_count, is_admin FROM users WHERE id = ?`, [userId], (err, user) => {
+        if (err || !user) {
+            return res.status(404).json({ error: 'User not found.' });
+        }
+        db.all(`SELECT * FROM payment_methods WHERE user_id = ?`, [userId], (err, payment_methods) => {
+            db.all(`SELECT * FROM investments WHERE user_id = ? ORDER BY date_created DESC`, [userId], (err, investments) => {
+                db.all(`SELECT * FROM withdrawals WHERE user_id = ? ORDER BY date_created DESC`, [userId], (err, withdrawals) => {
+                    db.all(`SELECT * FROM deposits WHERE user_id = ? ORDER BY date_created DESC`, [userId], (err, deposits) => {
+                        res.json({
+                            success: true,
+                            user: {
+                                ...user,
+                                payment_methods: payment_methods || [],
+                                investments: investments || [],
+                                withdrawals: withdrawals || [],
+                                deposits: deposits || []
+                            }
+                        });
+                    });
+                });
+            });
+        });
+    });
+});
+
+// Delete user account
+app.delete('/api/admin/users/:id', isAdmin, (req, res) => {
+    const userId = req.params.id;
+    if (Number(userId) === req.session.userId) {
+        return res.status(400).json({ error: 'You cannot delete your own admin account.' });
+    }
+    db.run(`DELETE FROM users WHERE id = ?`, [userId], function(err) {
+        if (err) {
+            return res.status(500).json({ error: 'Failed to delete user.' });
+        }
+        res.json({ success: true, message: 'User account successfully deleted.' });
+    });
+});
+
+// Get all deposits
+app.get('/api/admin/deposits', isAdmin, (req, res) => {
+    const sql = `
+        SELECT deposits.*, users.name as user_name, users.email as user_email
+        FROM deposits
+        JOIN users ON deposits.user_id = users.id
+        ORDER BY deposits.date_created DESC
+    `;
+    db.all(sql, (err, deposits) => {
+        if (err) {
+            return res.status(500).json({ error: 'Failed to retrieve deposits.' });
+        }
+        res.json({ success: true, deposits });
+    });
+});
+
+// Approve a deposit
+app.post('/api/admin/deposits/approve/:id', isAdmin, (req, res) => {
+    const depositId = req.params.id;
+    db.get(`SELECT * FROM deposits WHERE id = ?`, [depositId], (err, deposit) => {
+        if (err || !deposit) {
+            return res.status(404).json({ error: 'Deposit record not found.' });
+        }
+        if (deposit.status !== 'pending') {
+            return res.status(400).json({ error: 'Deposit has already been processed.' });
+        }
+        
+        db.serialize(() => {
+            // Update deposit status to completed
+            db.run(`UPDATE deposits SET status = 'completed' WHERE id = ?`, [depositId]);
+            // Credit user balance
+            db.run(`UPDATE users SET balance = balance + ? WHERE id = ?`, [deposit.amount, deposit.user_id], function(err) {
+                if (err) {
+                    return res.status(500).json({ error: 'Failed to credit user balance.' });
+                }
+                res.json({ success: true, message: `Deposit approved! GHC ${deposit.amount} has been credited to the user.` });
+            });
+        });
+    });
+});
+
+// Reject a deposit
+app.post('/api/admin/deposits/reject/:id', isAdmin, (req, res) => {
+    const depositId = req.params.id;
+    db.get(`SELECT * FROM deposits WHERE id = ?`, [depositId], (err, deposit) => {
+        if (err || !deposit) {
+            return res.status(404).json({ error: 'Deposit record not found.' });
+        }
+        if (deposit.status !== 'pending') {
+            return res.status(400).json({ error: 'Deposit has already been processed.' });
+        }
+        
+        db.run(`UPDATE deposits SET status = 'rejected' WHERE id = ?`, [depositId], function(err) {
+            if (err) {
+                return res.status(500).json({ error: 'Failed to reject deposit.' });
+            }
+            res.json({ success: true, message: 'Deposit confirmation rejected successfully.' });
         });
     });
 });

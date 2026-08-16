@@ -34,21 +34,34 @@ function updateCommonUI(user) {
         userNavBtn.setAttribute('href', 'profile.html');
     }
     
-    // Check if we should add a Logout link/button to the nav menu
+    // Check if we should add an Admin and Logout link/button to the nav menu
     const navCollapse = document.getElementById('navbarCollapse');
-    if (navCollapse && !document.getElementById('logout-nav-item')) {
+    if (navCollapse) {
         const navMenu = navCollapse.querySelector('.navbar-nav');
         if (navMenu) {
-            const logoutLi = document.createElement('a');
-            logoutLi.className = 'nav-item nav-link text-danger';
-            logoutLi.id = 'logout-nav-item';
-            logoutLi.href = '#';
-            logoutLi.innerHTML = '<i class="fas fa-sign-out-alt me-1"></i>Logout';
-            logoutLi.addEventListener('click', (e) => {
-                e.preventDefault();
-                logoutUser();
-            });
-            navMenu.appendChild(logoutLi);
+            // Add Admin link if user is admin
+            if (user.is_admin && !document.getElementById('admin-nav-item')) {
+                const adminLink = document.createElement('a');
+                adminLink.className = 'nav-item nav-link text-warning';
+                adminLink.id = 'admin-nav-item';
+                adminLink.href = 'admin.html';
+                adminLink.innerHTML = '<i class="fas fa-shield-alt me-1"></i>Admin';
+                navMenu.appendChild(adminLink);
+            }
+
+            // Add Logout link
+            if (!document.getElementById('logout-nav-item')) {
+                const logoutLi = document.createElement('a');
+                logoutLi.className = 'nav-item nav-link text-danger';
+                logoutLi.id = 'logout-nav-item';
+                logoutLi.href = '#';
+                logoutLi.innerHTML = '<i class="fas fa-sign-out-alt me-1"></i>Logout';
+                logoutLi.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    logoutUser();
+                });
+                navMenu.appendChild(logoutLi);
+            }
         }
     }
 }

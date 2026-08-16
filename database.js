@@ -29,7 +29,8 @@ function createTables() {
             tier_level TEXT DEFAULT 'Level 1',
             balance REAL DEFAULT 200.0,
             earnings REAL DEFAULT 0.0,
-            invites_count INTEGER DEFAULT 0
+            invites_count INTEGER DEFAULT 0,
+            is_admin INTEGER DEFAULT 0
         )`);
 
         // Payment Methods Table
@@ -78,6 +79,48 @@ function createTables() {
         )`);
         
         console.log('Database tables verified/created successfully.');
+
+        // Migration and seeding check
+        db.all("PRAGMA table_info(users)", (err, info) => {
+            if (!err && info) {
+                const hasIsAdmin = info.some(col => col.name === 'is_admin');
+                if (!hasIsAdmin) {
+                    db.run(`ALTER TABLE users ADD COLUMN is_admin INTEGER DEFAULT 0`, (err) => {
+                        if (err) {
+                            console.error("Error altering users table for is_admin:", err.message);
+                        } else {
+                            console.log("Added column is_admin to users table.");
+                        }
+                        seedAdmin();
+                    });
+                } else {
+                    seedAdmin();
+                }
+            } else {
+                seedAdmin();
+            }
+        });
+    });
+}
+
+function seedAdmin() {
+    const bcrypt = require('bcryptjs');
+    db.get(`SELECT * FROM users WHERE email = ? OR name = ?`, ['admin', 'admin'], (err, row) => {
+        if (!err && !row) {
+            bcrypt.hash('admin', 10, (err, hashedPassword) => {
+                if (!err) {
+                    db.run(`INSERT INTO users (name, email, password, is_admin) VALUES (?, ?, ?, 1)`,
+                        ['Admin', 'admin', hashedPassword], (err) => {
+                            if (err) {
+                                console.error('Failed to seed admin user:', err.message);
+                            } else {
+                                console.log('Successfully seeded admin user: admin / admin');
+                            }
+                        }
+                    );
+                }
+            });
+        }
     });
 }
 
